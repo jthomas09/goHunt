@@ -7,7 +7,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography, ListItemSecondaryAction, Button } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
@@ -15,7 +15,12 @@ import useReactRouter from "use-react-router";
 import _ from "lodash";
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  listItem: {
+    "&:hover": {
+      color: "#f37835"
+    }
+  },
+  textField: {
     margin: theme.spacing(2),
     padding: theme.spacing(2)
   }
@@ -50,53 +55,44 @@ const Search: React.FC = () => {
   };
 
   return (
-    <React.Fragment>
-      <Grid container={true} justify="center" spacing={3}>
-        <Grid item={true} xs={10} sm={10} md={6} lg={6} xl={6}>
-          <Card className={classes.root}>
-            <CardHeader title="Search for a City from A to Z" />
-            <CardContent>
-              <TextField
-                autoFocus={true}
-                fullWidth={true}
-                onChange={handleChange}
-                placeholder={"Search Cities"}
-                value={city || ""}
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <SearchIcon />
-                    </InputAdornment>
-                  )
-                }}
-              />
-
-              {!_.isEmpty(cities) && (
-                <Card>
-                  <List
-                    style={{
-                      border: "solid inherit 1px",
-                      borderRadius: 4
-                    }}
+    <Grid container={true} justify="center" spacing={3}>
+      <Grid item={true} xs={10} sm={10} md={6} lg={6} xl={6}>
+        <Card className={classes.textField}>
+          <CardContent>
+            <TextField
+              autoFocus={true}
+              fullWidth={true}
+              label="Search for a City from A to Z"
+              onChange={handleChange}
+              value={city || ""}
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                )
+              }}
+            />
+            {!_.isEmpty(cities) && (
+              <List>
+                {cities.map((city, index) => (
+                  <ListItem
+                    className={classes.listItem}
+                    button={true}
+                    divider={true}
+                    onClick={handleSelect(city)}
+                    key={index}
                   >
-                    {cities.map((city, index) => (
-                      <ListItem
-                        button={true}
-                        key={index}
-                        onClick={handleSelect(city)}
-                      >
-                        <ListItemText primary={city} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </Card>
-              )}
-            </CardContent>
-          </Card>
-        </Grid>
+                    <ListItemText primary={city} />
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </CardContent>
+        </Card>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 };
 

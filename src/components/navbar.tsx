@@ -10,6 +10,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     marginBottom: theme.spacing(1.5)
   },
+  appBar:{
+    backgroundColor:  "#f37835"
+  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -26,7 +29,7 @@ const Navbar = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: "#f37835"}}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             GoHunt Challenge
