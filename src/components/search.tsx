@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Search: React.FC = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   const { history } = useReactRouter();
   const [cities, setCities] = React.useState<string[]>([]);
   const [city, setCity] = React.useState<string>();
@@ -34,9 +34,7 @@ const Search: React.FC = () => {
   const handleSelect = (city: string) => (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    if (!_.isEmpty(cities)) {
-      setCity(city);
-    }
+    setCity(city);
     setCities([]);
   };
 
@@ -50,7 +48,6 @@ const Search: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleSearch(event.target.value);
     setCity(event.target.value);
-    history.push(`?q=${event.target.value}`);
   };
 
   return (
