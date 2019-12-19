@@ -10,7 +10,6 @@ import { makeStyles } from "@material-ui/core";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import React from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import useReactRouter from "use-react-router";
 import _ from "lodash";
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +26,6 @@ const useStyles = makeStyles(theme => ({
 
 const Search: React.FC = () => {
   const classes = useStyles();
-  const { history } = useReactRouter();
   const [cities, setCities] = React.useState<string[]>([]);
   const [city, setCity] = React.useState<string>();
 
